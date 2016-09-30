@@ -26,11 +26,13 @@
  */
 
 #include "qa_rfm69.h"
+#include "qa_rfm69_packet_decoder.h"
 
 CppUnit::TestSuite *
 qa_rfm69::suite()
 {
   CppUnit::TestSuite *s = new CppUnit::TestSuite("rfm69");
+  s->addTest(gr::rfm69::qa_rfm69_packet_decoder::suite());
 
   return s;
 }

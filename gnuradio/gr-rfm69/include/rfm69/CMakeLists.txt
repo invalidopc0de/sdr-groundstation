@@ -22,5 +22,5 @@
 ########################################################################
 install(FILES
     api.h
-    DESTINATION include/rfm69
+    rfm69_packet_decoder.h DESTINATION include/rfm69
 )

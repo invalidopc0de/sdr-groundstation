@@ -24,9 +24,8 @@ include(GrPlatform) #define LIB_SUFFIX
 
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
-
 list(APPEND rfm69_sources
-)
+    rfm69_packet_decoder_impl.cc )
 
 set(rfm69_sources "${rfm69_sources}" PARENT_SCOPE)
 if(NOT rfm69_sources)
@@ -56,11 +55,11 @@ GR_LIBRARY_FOO(gnuradio-rfm69 RUNTIME_COMPONENT "rfm69_runtime" DEVEL_COMPONENT 
 include(GrTest)
 
 include_directories(${CPPUNIT_INCLUDE_DIRS})
-
 list(APPEND test_rfm69_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/test_rfm69.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_rfm69.cc
-)
+    ${CMAKE_CURRENT_SOURCE_DIR}/qa_rfm69_packet_decoder.cc
+    )
 
 add_executable(test-rfm69 ${test_rfm69_sources})
 
