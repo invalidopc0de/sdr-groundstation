@@ -25,6 +25,8 @@
 #include <rfm69/api.h>
 #include <gnuradio/block.h>
 
+using namespace std;
+
 namespace gr {
   namespace rfm69 {
 
