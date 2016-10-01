@@ -3,18 +3,23 @@
   <key>rfm69_packet_decoder</key>
   <category>[RFM69]</category>
   <import>import rfm69</import>
-  <make>rfm69.packet_decoder($drop_header)</make>
+  <make>rfm69.packet_decoder($drop_header, $sync_word)</make>
   <param>
     <name>Drop_header</name>
     <key>drop_header</key>
-    <type>raw</type>
+    <type>bool</type>
+  </param>
+  <param>
+    <name>Sync_word</name>
+    <key>sync_word</key>
+    <type>string</type>
   </param>
   <sink>
     <name>in</name>
     <type>byte</type>
   </sink>
   <source>
-    <name>out</name>
-    <type>byte</type>
+      <name>pdu_out</name>
+      <type>message</type>
   </source>
 </block>

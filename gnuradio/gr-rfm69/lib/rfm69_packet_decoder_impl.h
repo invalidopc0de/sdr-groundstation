@@ -22,8 +22,12 @@
 #define INCLUDED_RFM69_RFM69_PACKET_DECODER_IMPL_H
 
 #include <rfm69/rfm69_packet_decoder.h>
+#include <pmt/pmt.h>
 
 #define BUF_MAX_SIZE	2048 // bytes
+#define MSG_MAX_SIZE    255 // From the spec
+
+using namespace std;
 
 namespace gr {
   namespace rfm69 {
@@ -32,15 +36,24 @@ namespace gr {
     {
      private:
       bool d_drop_header; // block arg  
+      bool verbose;
+      pmt::pmt_t d_msg_out;
+
 
       bool is_msg;
       unsigned char buffer[BUF_MAX_SIZE];	// store message
-	    int buffer_expected_len; 		// message length according to message header, in bits
+	  unsigned char buffer_expected_len; 		// message length according to message header, in bits
       int bit_index;				// bit index, within a byte. byte_index would have been better ?
       int buffer_i; // index of buffer[]
 
       struct timeval time_init;
       struct timeval time_sync_found;
+      bool set_sync_word( const std::string &sync_word);
+      char pack_bytes (const unsigned char* unpacked_bytes, int len, char current);
+      // manage buffer
+      int buffer_flush();
+      int buffer_append(unsigned char byte);
+      int buffer_reset();
 
      public:
       rfm69_packet_decoder_impl(bool drop_header);
@@ -54,10 +67,6 @@ namespace gr {
            gr_vector_const_void_star &input_items,
            gr_vector_void_star &output_items);
 
-      // manage buffer
-      int buffer_flush(unsigned char* out);
-      int buffer_append(unsigned char byte);
-      int buffer_reset();
     };
 
   } // namespace rfm69

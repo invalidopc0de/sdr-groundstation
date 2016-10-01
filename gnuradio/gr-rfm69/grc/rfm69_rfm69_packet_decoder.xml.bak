@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <block>
-  <name>RFM69 Packet Decoder</name>
+  <name>rfm69_packet_decoder</name>
   <key>rfm69_rfm69_packet_decoder</key>
   <category>[rfm69]</category>
   <import>import rfm69</import>
-  <make>rfm69.rfm69_packet_decoder($drop_header)</make>
+  <make>rfm69.rfm69_packet_decoder($bool)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
@@ -40,8 +40,7 @@
        * vlen
        * optional (set to 1 for optional inputs) -->
   <source>
-      <name>pdu_out</name>
-      <type>message</type>
-      <optional>1</optional>
+    <name>out</name>
+    <type>byte</type>
   </source>
 </block>
